@@ -32,6 +32,7 @@ $("#create-book-button").click(function() {
     return false;
 });
 
+
 $("#update-button").click(function() {
     var $editorTitle = $('#editor-title');
 
@@ -110,11 +111,27 @@ function fillTable() {
                 $bookId.attr("href", hrefAttr + "?id=" + book.bookId);
                 //      console.log($bookId.attr("href"));
 
+                $row.find(".book-edit").data("book", book);
+                $row.find(".book-edit").click(function() {
 
+                    $editorTitle = $("#editor-title")
+                    $editorTitle.text('Edit a book');
 
+                    var book = $(this).data("book");        // $(this) - element, który został kliknięty
+                    $("#title").val(book.title);
+                    $("#author").val(book.author);
+                    $("#publisher").val(book.publisher);
+                    $("#year").val(book.issueYear);
+                    $("#noPages").val(book.numPages);
+                    $("#price").val(book.price);
+                    $("#amount").val(book.amount);
+                    $("#update-button").data("book-id", book.bookId);
+                    console.log(book + $bookId);
+                });
 
                 $row.find(".book-delete").data("book-id", book.bookId);
                 $row.find(".book-delete").click(function() {
+
                     var id = $(this).data("book-id");
                     showDeleteModal(id);
                     console.log("delete modal + id" + id);
@@ -129,7 +146,6 @@ function fillTable() {
                 $row.find(".book-price").text(book.price);
                 $row.find(".book-amount").text(book.amount);
                 $("#book-table tbody").append($row);
-
             }
         }
     })

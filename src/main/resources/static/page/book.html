@@ -134,7 +134,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <input type="number" id="id" name="id" class="hidden"/>
+<!--                <input type="number" id="id" name="id" class="hidden"/>-->
                 <div class="form-group row required">
                     <label for="title" class="col-sm-3 control-label">Title</label>
                     <div class="col-sm-9">
@@ -235,14 +235,14 @@
                         <td class="book-no-pages"></td>
                         <td class="book-price"></td>
                         <td class="book-amount"></td>
-                        <td><button type="button" class="btn-xs btn-success active table-role-ROLE_EMPLOYEE"
+                        <td><button type="button" class="btn-xs btn-success active book-edit table-role-ROLE_EMPLOYEE"
                                     data-toggle="modal" data-target="#book-edit-modal">Edit</button>
                             <button type="button" class="btn-xs btn-success disabled book-delete table-role-ROLE_EMPLOYEE"
                                     data-toggle="modal" data-target="#book-delete-modal">Delete</button></td>
                     </tr>
                     </tbody>
                 </table>
-                <button class="btn-xs btn-success active create-book-button">Add book</button>
+                <button class="btn-xs btn-success active create-book-button" data-target="#book-edit-modal">Add book</button>
             </div>
         </div>
     </div>
