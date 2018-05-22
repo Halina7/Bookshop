@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.math.BigDecimal;
 import java.time.Year;
-import java.util.List;
 
 @Entity
 public class Book {
@@ -39,7 +38,7 @@ public class Book {
     private Year issueYear;
 
     @NumberFormat
-    private Integer numPages;
+    private Integer noPages;
 
     @NumberFormat
     private BigDecimal price;
@@ -53,14 +52,14 @@ public class Book {
                 @NotEmpty(message = "Author is required") String author,
                 @NotEmpty(message = "Publisher is required") String publisher,
                 @PastOrPresent Year issueYear,
-                Integer numPages,
+                Integer noPages,
                 BigDecimal price,
                 Integer amount) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.issueYear = issueYear;
-        this.numPages = numPages;
+        this.noPages = noPages;
         this.price = price;
         this.amount = amount;
     }
@@ -101,12 +100,12 @@ public class Book {
         this.issueYear = issueYear;
     }
 
-    public Integer getNumPages() {
-        return numPages;
+    public Integer getNoPages() {
+        return noPages;
     }
 
-    public void setNumPages(Integer numPages) {
-        this.numPages = numPages;
+    public void setNoPages(Integer noPages) {
+        this.noPages = noPages;
     }
 
     public BigDecimal getPrice() {

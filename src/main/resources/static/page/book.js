@@ -34,7 +34,6 @@ $("#create-book-button").click(function() {
 
 
 $("#update-button").click(function() {
-    var $editorTitle = $('#editor-title');
 
     var title = $("#title").val();
     var author = $("#author").val();
@@ -44,7 +43,7 @@ $("#update-button").click(function() {
     var price = $("#price").val();
     var amount = $("#amount").val();
 
-    var id = $("#update-button").data("id");
+    var id = $("#update-button").data("bookId");
 
     var book = {
         title: title,
@@ -65,6 +64,7 @@ $("#update-button").click(function() {
         //    resetForm();
         //    clearValidationErrors();
             fillTable();
+            $("#book-edit-modal").modal("hide");
         },
         error: function(xhr) {
        //     handleValidationError(xhr.responseJSON);
@@ -75,7 +75,6 @@ $("#update-button").click(function() {
 
 function showDeleteModal(id) {
 //    $("#delete-modal").modal("show");
-
    // $("#delete-confirm-button").off("click");
     $("#delete-confirm-button").click(function () {
         console.log(id);
@@ -114,17 +113,20 @@ function fillTable() {
                 $row.find(".book-edit").data("book", book);
                 $row.find(".book-edit").click(function() {
 
-                    $editorTitle = $("#editor-title")
+                    $editorTitle = $("#editor-title");
                     $editorTitle.text('Edit a book');
+                    // $editor = $('#editor');
+                    // $editor.removeClass("required");
 
                     var book = $(this).data("book");        // $(this) - element, który został kliknięty
                     $("#title").val(book.title);
                     $("#author").val(book.author);
                     $("#publisher").val(book.publisher);
                     $("#year").val(book.issueYear);
-                    $("#noPages").val(book.numPages);
+                    $("#noPages").val(book.noPages);
                     $("#price").val(book.price);
                     $("#amount").val(book.amount);
+
                     $("#update-button").data("book-id", book.bookId);
                     console.log(book + $bookId);
                 });
@@ -134,7 +136,7 @@ function fillTable() {
 
                     var id = $(this).data("book-id");
                     showDeleteModal(id);
-                    console.log("delete modal + id" + id);
+                    console.log("delete book id: " + id);
                 });
 
                 $row.find(".book-id").text(book.bookId);
@@ -142,7 +144,7 @@ function fillTable() {
                 $row.find(".book-author").text(book.author);
                 $row.find(".book-publisher").text(book.publisher);
                 $row.find(".book-year").text(book.issueYear);
-                $row.find(".book-no-pages").text(book.numPages);
+                $row.find(".book-no-pages").text(book.noPages);
                 $row.find(".book-price").text(book.price);
                 $row.find(".book-amount").text(book.amount);
                 $("#book-table tbody").append($row);
@@ -172,7 +174,7 @@ $("#bn-find-by-title").click(function () {
             $row.find(".book-author").text(book.author);
             $row.find(".book-publisher").text(book.publisher);
             $row.find(".book-year").text(book.issueYear);
-            $row.find(".book-no-pages").text(book.numPages);
+            $row.find(".book-no-pages").text(book.noPages);
             $row.find(".book-price").text(book.price);
             $row.find(".book-amount").text(book.amount);
             $("#book-table tbody").append($row);
@@ -200,7 +202,7 @@ $("#bn-find-by-author").click(function () {
                 $row.find(".book-author").text(book.author);
                 $row.find(".book-publisher").text(book.publisher);
                 $row.find(".book-year").text(book.issueYear);
-                $row.find(".book-no-pages").text(book.numPages);
+                $row.find(".book-no-pages").text(book.noPages);
                 $row.find(".book-price").text(book.price);
                 $row.find(".book-amount").text(book.amount);
                 $("#book-table tbody").append($row);
@@ -228,7 +230,7 @@ $("#bn-find-by-year").click(function () {
                 $row.find(".book-author").text(book.author);
                 $row.find(".book-publisher").text(book.publisher);
                 $row.find(".book-year").text(book.issueYear);
-                $row.find(".book-no-pages").text(book.numPages);
+                $row.find(".book-no-pages").text(book.noPages);
                 $row.find(".book-price").text(book.price);
                 $row.find(".book-amount").text(book.amount);
                 $("#book-table tbody").append($row);

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.Year;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -42,7 +41,7 @@ public class BookService {
         bookToUpdate.setAuthor(book.getAuthor());
         bookToUpdate.setPublisher(book.getPublisher());
         bookToUpdate.setIssueYear(book.getIssueYear());
-        bookToUpdate.setNumPages(book.getNumPages());
+        bookToUpdate.setNoPages(book.getNoPages());
         bookToUpdate.setPrice(book.getPrice());
         bookToUpdate.setAmount(book.getAmount());
         bookRepository.save(bookToUpdate);

@@ -10,7 +10,7 @@ $.get({
         $(".book-author").text(response.author);
         $(".book-publisher").text(response.publisher);
         $(".book-year").text(response.issueYear);
-        $(".book-no-pages").text(response.numPages);
+        $(".book-no-pages").text(response.noPages);
         $(".book-price").text(response.price);
         $(".book-amount").text(response.amount);
     }
