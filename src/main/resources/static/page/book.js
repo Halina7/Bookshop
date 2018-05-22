@@ -1,4 +1,4 @@
-$("#create-book-button").click(function() {
+$("#create-button").click(function() {
     var title = $("#title").val();
     var author = $("#author").val();
     var publisher = $("#publisher").val();
@@ -24,6 +24,7 @@ $("#create-book-button").click(function() {
         success: function(response) {
          //   clearValidationErrors();
             fillTable();
+            $("#book-edit-modal").modal("hide");
         }
         //error: function(xhr) {
         //    handleValidationError(xhr.responseJSON);
@@ -31,6 +32,19 @@ $("#create-book-button").click(function() {
     });
     return false;
 });
+
+function resetForm() {
+    $("#create-button").show();
+    $("#update-button").hide();
+
+    $("#title").val("");
+    $("#author").val("");
+    $("#publisher").val("");
+    $("#year").val("");
+    $("#noPages").val("");
+    $("#price").val("");
+    $("#amount").val("");
+}
 
 
 $("#update-button").click(function() {
@@ -61,7 +75,7 @@ $("#update-button").click(function() {
         data: JSON.stringify(book),
         contentType: "application/json; charset=utf-8",
         success: function(response) {
-        //    resetForm();
+            resetForm();
         //    clearValidationErrors();
             fillTable();
             $("#book-edit-modal").modal("hide");
@@ -115,8 +129,9 @@ function fillTable() {
 
                     $editorTitle = $("#editor-title");
                     $editorTitle.text('Edit a book');
-                    // $editor = $('#editor');
-                    // $editor.removeClass("required");
+
+                    $editor = $('#editor');
+                    $editor.removeClass("required");
 
                     var book = $(this).data("book");        // $(this) - element, który został kliknięty
                     $("#title").val(book.title);
@@ -126,6 +141,9 @@ function fillTable() {
                     $("#noPages").val(book.noPages);
                     $("#price").val(book.price);
                     $("#amount").val(book.amount);
+
+                    $("#create-button").hide();
+                    $("#update-button").show();
 
                     $("#update-button").data("book-id", book.bookId);
                     console.log(book + $bookId);
@@ -139,6 +157,14 @@ function fillTable() {
                     console.log("delete book id: " + id);
                 });
 
+                resetForm();
+                $(".book-create").click(function() {
+                    resetForm();
+                    $editorTitle = $("#editor-title");
+                    $editorTitle.text('Add a book');
+
+                });
+
                 $row.find(".book-id").text(book.bookId);
                 $row.find(".book-title").text(book.title);
                 $row.find(".book-author").text(book.author);
@@ -149,6 +175,7 @@ function fillTable() {
                 $row.find(".book-amount").text(book.amount);
                 $("#book-table tbody").append($row);
             }
+
         }
     })
 }
